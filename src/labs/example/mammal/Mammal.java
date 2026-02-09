@@ -39,12 +39,14 @@ public class Mammal {
 
     public void sit() throws Exception {
         System.out.println("The animal is sitting.");
-        Thread.sleep(15000);
-        stand();
-        System.out.println("The animal barks.");
     return;
 
     }
+
+    public void bark(){
+        System.out.println("Woof!");
+    }
+
 
     public void getMammalDetails(){
         System.out.println(this.hairColor + "\n" + this.eyeColor + "\n" + this.bodyTemp + "\n" + this.habitat);
