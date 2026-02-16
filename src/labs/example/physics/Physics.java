@@ -44,4 +44,33 @@ public class Physics {
         double pe = m*GRAVITY*h; //mass * gravity * height
         return pe; //NM or Joules
     };
+
+    public static double trig(double y, double x){
+        return Math.round(Math.atan2(y, x) * 180/Math.PI * 100.0) / 100.0; //returns the angle in degrees, rounded to two decimal places (Is there a better solution?)
+    }
+
+    public static void logInvalidAngleInfo(double angle){
+        System.out.println("Logging the angle " + angle + " degrees. This is not a right angle.");
+    }
+
+    public static void logValidAngleInfo(double angle){
+        System.out.println("Logging the angle " + angle + " degrees. This is a valid 3-4-5 triangle.");
+    }
+
+    public static double getKnownDistanceToEarth(){
+        return 92947266.72; //miles
+    }
+
+    public static double getLightSpeedInMPH(){
+        return 186282 * 3600; // miles/sec * 60 seconds * 60 minutes
+    }
+
+    public static double getTimeFromSunToEarthInHours(){
+        double time = getKnownDistanceToEarth() / getLightSpeedInMPH();
+        return time;
+    }
+
+    public static void logEarthToSunInvalidDistance(){
+        System.out.println("This value is not equal to " + getKnownDistanceToEarth());
+    }
 }
