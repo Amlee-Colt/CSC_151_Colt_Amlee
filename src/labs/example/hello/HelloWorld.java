@@ -1,4 +1,4 @@
-package src.labs.example.hello;
+package labs.example.hello;
 
 
 public class HelloWorld {

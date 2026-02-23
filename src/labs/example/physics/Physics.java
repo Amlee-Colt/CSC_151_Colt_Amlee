@@ -4,7 +4,7 @@
 @purpose: Week 5 lab
 */
 
-package src.labs.example.physics;
+package labs.example.physics;
 
 public class Physics {
 

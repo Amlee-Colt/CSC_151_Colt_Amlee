@@ -1,4 +1,4 @@
-package src.labs.example.mammal;
+package labs.example.mammal;
 public class Mammal {
     protected String hairColor;
     protected String eyeColor;
