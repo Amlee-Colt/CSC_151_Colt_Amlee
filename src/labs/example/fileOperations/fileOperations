@@ -1,0 +1,17 @@
+/*
+@author: Colt Amlee
+@date: 23 March 2026
+@purpose: Week 11 lab
+*/
+
+import com.fasterxml.jackson.databind.MappingIterator; 
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+
+import java.io.IOException; 
+import java.nio.file.Path;
+import java.util.List;
+
+
+record Account(String name, double mathGrade, double scienceGrade, double englishGrade) {}
+
