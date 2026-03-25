@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class FileOperations { //reads CSV
+public class FileOperations { 
     public static void main(String[] args) {
         try (BufferedReader br = new BufferedReader(new FileReader("T:\\CSC_151_Colt_Amlee\\src\\labs\\example\\fileOperations\\\\users.csv"))) {
             String line;
