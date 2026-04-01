@@ -58,6 +58,8 @@ public class FileOperations {
                 }
                 totalTally += 1;
                 
+                // TO DO: SPLIT BY SPACES, USE INDEXES FOR DATE/TIME/SEVERITY/IP, THEN SPLIT AGAIN BY |
+
                 //Need to figure out what logic to use to detect when a "flag?" character is used and a way to turn data into usable formats. ie, a way to detect the brackets and store whether something is an error, a warning, or just info.
                 //From there, a way to tally how much of each, and what types of [errors/warnings/info] are logged. For instance, return how many errors there are, and a tally of each type of error.
                 //I could theoretically just go through each line character by character and print every index starting after a certain char like "[" until we get to "]", but how would I convert this into a usable format? What flexibility do I have when I switch between different separators?
