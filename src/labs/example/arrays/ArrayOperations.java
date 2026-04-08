@@ -1,6 +1,6 @@
 /*
 @author: Colt Amlee
-@date: 18 March 2026
+@date: 23 March 2026
 @purpose: Week 10 lab
 */
 
@@ -85,10 +85,6 @@ public class ArrayOperations {
         int sum1 = 0;
         int sum2 = 0;
         int sum3 = 0;
-//        for (int i = 0; i < arr1.length; i++) {
-//            sum1 += arr1[i];
-//        }
-//        System.out.println(sum1);
 
         for (int i : arr1) {
         sum1 += i;
@@ -111,6 +107,41 @@ public class ArrayOperations {
         } else {
             System.out.println("One of the arrays is equal to another and I'm too lazy to account for that as of now. \nThat isn't a scenario possible with the current values of my arrays and I don't imagine you'd go into that much depth whilst grading, but I'm still leaving this here since it's technically possible.");
         }
+    }
 
+    public static void highestValue(int array[]) {
+        int highestValue = 0;
+        for (int i : array){
+            if (i > highestValue) {
+                highestValue = i;
+            }
+        }
+        System.out.println("The highest value in the myArray object is: " + highestValue);
+    }
+
+    public static void mod10Check(int ccn[]) {
+        int counter = 0;
+        int num[] = new int[ccn.length];
+        int sum = 0;
+        for (int i : ccn){
+            if (counter < ccn.length) {
+                num[ccn.length - 1 - counter] = i;
+                counter++;
+            }
+        }
+        for (int j = 1; j < num.length; j += 2) {
+            num[j] *= 2;
+            if (num[j] > 10) {
+                num[j] -= 9;
+            }
+        }
+        for (int k : num) {
+            sum += k;
+        }
+        if (sum % 10 == 0) {
+            System.out.println("This credit card is valid");
+        } else {
+            System.out.println("This credit card is not valid");
+        }
     }
 }
