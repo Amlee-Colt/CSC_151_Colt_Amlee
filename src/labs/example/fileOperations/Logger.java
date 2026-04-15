@@ -1,6 +1,6 @@
 /*
 @author: Colt Amlee
-@date: 13 April 2026
+@date: 15 April 2026
 @purpose: Week 14 lab
 */
 
@@ -24,11 +24,14 @@ public class Logger {
         getGMTOffset(openErrorLog("T:\\\\CSC_151_Colt_Amlee\\\\src\\\\labs\\\\example\\\\fileOperations\\\\http_access.log"));
         System.out.println("-------------------------");
         getHTTPCodes(openErrorLog("T:\\\\CSC_151_Colt_Amlee\\\\src\\\\labs\\\\example\\\\fileOperations\\\\http_access.log"));
+        System.out.println("-------------------------");
         getResponseSizes(openErrorLog("T:\\\\CSC_151_Colt_Amlee\\\\src\\\\labs\\\\example\\\\fileOperations\\\\http_access.log"));
+        System.out.println("-------------------------");
+        groupHTTPMethodsAndEndPoints(openErrorLog("T:\\\\CSC_151_Colt_Amlee\\\\src\\\\labs\\\\example\\\\fileOperations\\\\http_access.log"));
     }
 
 
-    public static File openErrorLog(String URL){
+    public static File openErrorLog(String URL){//I really don't know what I'm supposed to do with this. I know I'm supposed to return type BufferedReader, but how do I get that to work? Figuring this out would likely make everything WAY more compact.
         File path = new File(URL);
         return path;
     }
@@ -42,7 +45,6 @@ public class Logger {
         int totalTally = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
-            
             while ((line = br.readLine()) != null) {
                 String splitString[] = line.split(" ");
                 if (splitString[2].equals("[ERROR]")) {
@@ -53,6 +55,8 @@ public class Logger {
                     infoTally += 1;
                 } else if (splitString[2].equals("[DEBUG]")) {
                     debugTally += 1;
+                    //I don't like this, it's messy. Lacks elegance. I'd prefer to make this dynamic instead of a trillion repetitive if statements.
+                    //I make something less repetitive in the groupHTTPMethodsAndEndPoints method
                 }
                 totalTally += 1;
             }
@@ -71,13 +75,11 @@ public class Logger {
             int counter = 0;
             while ((line = br.readLine()) != null) {
                 String splitString[] = line.split(" - | \\| |: ");
-
                 if (splitString[1].equals("Memory limit exceeded in worker thread")) {
                     counter+=1;
                     if (endpoint.contains(splitString[3]) == false){
                         endpoint.add(splitString[3]);}
                 }
-                
             }
             System.out.printf("Memory limit has been exceeded %s times.%nThis occurred in the following endpoints:%n",counter);
             for (String i : endpoint){
@@ -147,6 +149,7 @@ public class Logger {
                     ThreeXError += 1;
                 } else if (Integer.parseInt(statusCode[1]) >= 500 && Integer.parseInt(statusCode[1]) < 600) {
                     FiveXError += 1;
+                    //Again, I'd prefer if I didn't use a ton of if statements, but this is easiest. 
                 }
             }
             System.out.printf("5xx Errors: %s%n2xx Errors: %s%n3xx Errors: %s%n",FiveXError,ThreeXError,TwoXError);
@@ -168,7 +171,40 @@ public class Logger {
                     counter += 1;
                 }
             }
-            System.out.printf("There are %s logs with a response size above 3900 bytes.",counter);
+            System.out.printf("There are %s logs with a response size above 3900 bytes.%n",counter);
+        }
+        catch (IOException e) { 
+            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
+
+    public static void groupHTTPMethodsAndEndPoints(File path) {
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            ArrayList<String> method = new ArrayList<String>();
+            ArrayList<Integer> tally = new ArrayList<Integer>();
+            while ((line = br.readLine()) != null) {
+                String splitString[] = line.split("\"| ");     
+                if (method.contains(splitString[6]) == false) {
+                    method.add(splitString[6]);
+                    tally.add(0);
+                    //System.out.println(splitString[6]);
+                    //Printing the above is enough to fulfill the assignment's requirements
+                }
+                for (String i : method) {
+                    if (i.equals(splitString[6])) {
+                        tally.set(method.indexOf(splitString[6]),tally.get(method.indexOf(splitString[6])) + 1);
+                        //I decided to go a step beyond and tally how many times each method appears. 
+                        //This tally is NOT hardcoded, it will update dynamically. 
+                    }
+                }
+            }
+            for (int i = 0; i < method.size(); i++) {
+                System.out.printf("%s appears %s time%s.%n",method.get(i),tally.get(i), (tally.get(i) != 1) ? "s" : ""); 
+                //The last part is just to make singulars correct. If OPTIONS appeared once, it would print "OPTIONS appears 1 time." 
+                //This won't matter for the assignment since everything is plural, but I really wanted to make sure it was dynamic.
+            }
         }
         catch (IOException e) { 
             e.printStackTrace();
