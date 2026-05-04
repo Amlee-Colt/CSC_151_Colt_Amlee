@@ -13,8 +13,8 @@ import java.net.*;
 public class Server {
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(5000);
-            System.out.println("Server started. Listening on port 5000...");
+            ServerSocket serverSocket = new ServerSocket(8080);
+            System.out.println("Server started. Listening on port 8080...");
 
             while (true) {
                 Socket clientSocket = serverSocket.accept();

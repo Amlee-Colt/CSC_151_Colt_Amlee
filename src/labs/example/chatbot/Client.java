@@ -13,7 +13,7 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("10.75.2.53", 5000); //"10.75.2.53" is my IP. If I were able to find a willing participant for Part 2, I would replace this with their IP, and they would use that for their own client to connect to my server.
+            Socket socket = new Socket("localhost", 5000); //"10.75.2.53" is my IP. If I were able to find a willing participant for Part 2, I would replace this with their IP, and they would use that for their own client to connect to my server.
             System.out.println("Connected to server.");
 
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
