@@ -12,11 +12,11 @@ import java.util.Scanner;
 
 public class Gemini {
     public static void main() {
-        final String API_KEY = "AIzaSyCLzQpQUCBLMJF5Z8sme_rBmw_MHOb3kOw";
+        final String API_KEY = "";
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
 
-        
+
     }
     
     

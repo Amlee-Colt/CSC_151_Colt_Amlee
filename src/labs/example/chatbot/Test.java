@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Test {
     public static void main(String[] args) {
-            String apiKey = "AIzaSyCLzQpQUCBLMJF5Z8sme_rBmw_MHOb3kOw";
+            String apiKey = "";
             // The endpoint usually looks like this
             String urlString = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
 
